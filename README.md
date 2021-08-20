@@ -28,25 +28,24 @@ Vue.use(TblDaterangePicker);
 <tbl-daterange-picker :btnOption="btnOption"></tbl-daterange-picker>
 
 export default {
-	data() {
+	data(){
 		return {
-			btnOption:{
+			btnOption: {
 				isYesterday:true, // 显示 昨日 按钮
-				isToday:true, // 显示 今日 按钮
-				isPreWeek:true, // 显示 上周 按钮
-				isThisWeek:true, // 显示 本周 按钮
-				isPreMonth:true, // 显示 上月 按钮
-				isThisMonth:true, // 显示 本月 按钮
-				isLast7days:true, // 显示 过去7天 按钮
-				isLast30days:true, // 显示 过去30天 按钮
-				isLast90days:true, // 显示 过去90天 按钮
-			},
+				isToday:true, // 今日
+				isPreWeek:true, // 上周
+				isThisWeek:true, // 本周
+				isPreMonth:true, // 上月
+				isThisMonth:true, // 本月
+				isLast7days:true, // 过去7天
+				isLast30days:true, // 过去30天
+				isLast90days:true, // 过去90天
+			}
 		}
 	}
 }
 	
 ```
-
 
 #### 问题解决
 
