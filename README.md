@@ -25,7 +25,7 @@ Vue.use(TblDaterangePicker);
 #### 使用
 
 ```
-<tbl-daterange-picker :btnOption="btnOption"></tbl-daterange-picker>
+<tbl-daterange-picker :btnOption="btnOption" @rangeValueChange="onChange"></tbl-daterange-picker>
 
 export default {
   data(){
@@ -42,7 +42,12 @@ export default {
         isLast90days:true, // 过去90天
       }
     }
-  }
+  },
+  methods:{
+    onChange(val){
+      console.log(val,'获取到绑定的时间范围值');
+    },
+  },
 }
 	
 ```

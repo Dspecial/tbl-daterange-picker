@@ -4,7 +4,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store'; // 引入vuex
 import ElementUI from 'element-ui';
 
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 });// 声明使用ElementUI
