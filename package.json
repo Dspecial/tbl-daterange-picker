@@ -3,8 +3,19 @@
   "version": "1.0.2",
   "description": "vue + elementui datatimepicker组件二次开发",
   "author": "dxx",
+  "license": "MIT",
   "private": false,
-  "main": "./dist_pack/tbl-daterange-picker.min.js",
+  "main": "dist_pack/tbl-daterange-picker.min.js",
+  "files": [
+    "dist_pack",
+    "src/components"
+  ],
+  "keywords": [
+    "vue",
+    "element-ui",
+    "date-time-picker",
+    "tbl-daterange-picker"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

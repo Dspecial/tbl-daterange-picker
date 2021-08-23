@@ -5,8 +5,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
+import TblDaterangePicker from '../install';
 
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 });// 声明使用ElementUI
+Vue.use(TblDaterangePicker);
 
 Vue.config.productionTip = false
 

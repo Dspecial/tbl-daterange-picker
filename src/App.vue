@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import TblDaterangePicker from './components/index'
 export default {
   name: 'App',
   data(){
@@ -23,7 +22,7 @@ export default {
     }
   },
   components:{
-    TblDaterangePicker
+    
   },
   methods:{
     onChange(val){
