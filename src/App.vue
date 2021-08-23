@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <p>时间范围选择：</p>
-    <tbl-timerange-picker :btnOption="btnOption" @rangeValueChange="onChange"></tbl-timerange-picker>
+    <tbl-daterange-picker :btnOption="btnOption" @rangeValueChange="onChange"></tbl-daterange-picker>
   </div>
 </template>
 
 <script>
-import TblTimerangePicker from './components/index'
+import TblDaterangePicker from './components/index'
 export default {
   name: 'App',
   data(){
@@ -23,7 +23,7 @@ export default {
     }
   },
   components:{
-    TblTimerangePicker
+    TblDaterangePicker
   },
   methods:{
     onChange(val){

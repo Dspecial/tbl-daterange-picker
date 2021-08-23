@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name:"tbl-timerange-picker",
+  name:"tbl-daterange-picker",
   components:{
 
   },
