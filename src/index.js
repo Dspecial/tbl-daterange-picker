@@ -3,22 +3,24 @@
  * @Email: dingxixi@techbloom.net
  * @Date: 2021-08-21 14:14:54
  * @LastEditors: dxx
- * @LastEditTime: 2021-08-23 18:31:24
+ * @LastEditTime: 2021-08-24 15:40:33
  */
-import TblComponent from './components/TblDaterangePicker.vue'
-//定义一个对象 需要install方法
-const TblDaterangePicker = { // 下面的TblComponent.name 值要写成组件名称 TblDaterangePicker ，要区分大小写的
-  install(Vue,options) {
-    if(typeof window !== 'undefined' && window.Vue){
-      Vue = window.Vue
-    }
-    //全局注册组件（组件名，组件）
-    Vue.component(TblComponent.name, TblComponent);
+import {version} from "../package.json";
+import TblDaterangePicker from './components/TblDaterangePicker.vue'
 
-    if(typeof window !== 'undefined' && window.Vue){
-      window.Vue.use(TblComponent)
-    }
-  }
+// 定义install方法
+const install = function (Vue, options = {}) {
+  // 全局注册组件（组件名，组件）
+  Vue.component(TblDaterangePicker.name, TblDaterangePicker);
+};
+
+/* istanbul ignore if */
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
 }
 
-export default TblDaterangePicker;
+export default {
+  version: version,
+  install,
+  TblDaterangePicker,
+}
