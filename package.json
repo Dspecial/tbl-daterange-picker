@@ -1,14 +1,15 @@
 {
   "name": "tbl-daterange-picker",
-  "version": "1.0.5",
-  "description": "vue + elementui datatimepicker组件二次开发",
+  "version": "1.0.6",
+  "description": "datatimepicker组件二次开发",
   "author": "dxx",
   "license": "MIT",
   "private": false,
-  "main": "dist_pack/tbl-daterange-picker.min.js",
+  "main": "lib/tbl-daterange-picker.min.js",
   "files": [
-    "dist_pack",
-    "src/components"
+    "lib",
+    "src/components",
+    "src/index.js"
   ],
   "keywords": [
     "vue",

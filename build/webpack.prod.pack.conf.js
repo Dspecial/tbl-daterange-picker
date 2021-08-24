@@ -24,7 +24,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   // devtool: config.build.productionSourceMap ? config.build.devtool : false,
   //修改output
   output: {
-    path: path.resolve(__dirname, '../dist_pack'),
+    path: path.resolve(__dirname, '../lib'),
     publicPath: config.build.assetsPublicPath,
     filename: 'tbl-daterange-picker.min.js',
     library: 'tbl-daterange-picker', //library指定的就是你使用require时的模块名

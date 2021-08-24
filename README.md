@@ -1,5 +1,5 @@
 # tbl-daterange-picker
-基于`element-ui`，改造DateTimePicker组件
+基于`element-ui`，改造DateTimePicker组件,范围选择
 添加了昨日、今日、上周、本周、上月、本月、过去7天、过去30天、过去90天等快捷按钮
 希望大家喜欢！
 
