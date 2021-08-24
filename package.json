@@ -1,6 +1,6 @@
 {
   "name": "tbl-daterange-picker",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "vue + elementui datatimepicker组件二次开发",
   "author": "dxx",
   "license": "MIT",
@@ -12,9 +12,7 @@
   ],
   "keywords": [
     "vue",
-    "element-ui",
-    "date-time-picker",
-    "tbl-daterange-picker"
+    "date-time-picker"
   ],
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -25,8 +23,7 @@
   "dependencies": {
     "element-ui": "^2.15.5",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.6.0"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

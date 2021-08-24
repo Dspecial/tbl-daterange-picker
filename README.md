@@ -9,7 +9,7 @@
 
 ```
 npm i element-ui -S; // 先安装element-ui
-npm i tbl-daterange-picker -S;
+npm i tbl-daterange-picker;
 ```
 
 #### 全局注册

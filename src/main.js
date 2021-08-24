@@ -3,9 +3,8 @@
 
 import Vue from 'vue'
 import App from './App'
-import router from './router'
 import ElementUI from 'element-ui';
-import TblDaterangePicker from '../install';
+import TblDaterangePicker from './index.js';
 
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 });// 声明使用ElementUI
 Vue.use(TblDaterangePicker);
@@ -17,7 +16,6 @@ import 'element-ui/lib/theme-chalk/index.css'; // element-ui样式表
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   components: { App },
   template: '<App/>'
 })
