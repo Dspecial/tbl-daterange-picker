@@ -1,18 +1,17 @@
 <template>
-  <div class="">
-    <el-date-picker
-      v-model="activeValue"
-      type="datetimerange"
-      :picker-options="pickerOptions"
-      range-separator="至"
-      start-placeholder="开始日期"
-      end-placeholder="结束日期"
-      align="right"
-      format="yyyy-MM-dd HH:mm:ss" 
-      value-format="yyyy-MM-dd HH:mm:ss"
-      @change="changeValue">
-    </el-date-picker>
-  </div>
+  <el-date-picker
+    v-model="currentValue"
+    :type="type"
+    :picker-options="pickerOptions"
+    :align="align"
+    :format="format" 
+    :value-format="ValueFormat"
+    range-separator="至"
+    start-placeholder="开始日期"
+    end-placeholder="结束日期"
+    clearable
+    @change="changeValue">
+  </el-date-picker>
 </template>
 
 <script>
@@ -22,8 +21,30 @@ export default {
 
   },
   props:{
+    value:{
+      type: [Array,String],
+      default:()=>{
+        return []
+      },
+    },
+    align:{
+      type: String,
+      default: "left",
+    },
+    format:{
+      type: String,
+      default: "yyyy-MM-dd HH:mm:ss",
+    },
+    ValueFormat:{
+      type: String,
+      default: "yyyy-MM-dd HH:mm:ss",
+    },
+    type:{
+      type: String,
+      default: "datetimerange", // daterange|monthrange|datetimerange
+    },
     btnOption:{
-      type: [Object,Array],
+      type: [Object,Boolean],
       default:function(){
         return {
           isYesterday:true,
@@ -42,9 +63,12 @@ export default {
 
   data(){
     return {
-      activeValue: "",
+      currentValue:this.value,
       pickerOptions: {
-        shortcuts: []
+        shortcuts: [],
+        disabledDate(date) {
+          return date.getTime() > Date.now();
+        }
       },
       yesterdayBtn:{
         text: '昨天',
@@ -189,12 +213,13 @@ export default {
     }
 
   },
-  computed:{
+  computed: {
 
   },
+
   methods:{
     changeValue(val){
-      this.$emit('rangeValueChange',val)
+      this.$emit('change',val)
     },
   },
 }

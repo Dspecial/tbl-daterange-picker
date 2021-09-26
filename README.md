@@ -25,11 +25,23 @@ Vue.use(TblDaterangePicker);
 #### 使用
 
 ```
-<tbl-daterange-picker :btnOption="btnOption" @rangeValueChange="onChange"></tbl-daterange-picker>
+<tbl-daterange-picker v-model="defaultValue" 
+  :type="type"
+  :align="align"
+  :format="format" 
+  :value-format="ValueFormat" 
+  :btnOption="btnOption" 
+  @change="onChange">
+</tbl-daterange-picker>
 
 export default {
   data(){
     return {
+      defaultValue:['2021-09-14','2021-09-19'], // 默认值
+      type:"datetimerange", // 默认是datetimerange, 可填：daterange|monthrange|datetimerange
+      align:"left", // 默认是left, 可填： left|cente|right
+      format:"yyyy-MM-dd", // 显示在输入框中的格式  默认：yyyy-MM-dd HH:mm:ss|yyyy-MM-dd   ...
+      ValueFormat:"yyyy-MM-dd", // 可选，绑定值的格式 默认：yyyy-MM-dd HH:mm:ss|yyyy-MM-dd ...
       btnOption: {
         isYesterday:true, // 显示 昨日 按钮
         isToday:true, // 今日
@@ -40,12 +52,13 @@ export default {
         isLast7days:true, // 过去7天
         isLast30days:true, // 过去30天
         isLast90days:true, // 过去90天
-      }
+      },
     }
   },
   methods:{
     onChange(val){
       console.log(val,'获取到绑定的时间范围值');
+      this.defaultValue = val;
     },
   },
 }

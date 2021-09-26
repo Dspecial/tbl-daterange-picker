@@ -1,14 +1,14 @@
-<!--
- * @Author: dxx
- * @Email: dingxixi@techbloom.net
- * @Date: 2021-08-20 18:07:55
- * @LastEditors: dxx
- * @LastEditTime: 2021-08-24 15:29:34
--->
 <template>
-  <div id="app">
+  <div id="app" style="margin-left:500px">
     <p>时间范围选择：</p>
-    <tbl-daterange-picker :btnOption="btnOption" @rangeValueChange="onChange"></tbl-daterange-picker>
+    <tbl-daterange-picker v-model="defaultValue"
+    type="monthrange"
+    align="left"
+    format="yyyy-MM-dd HH:mm:ss" 
+    value-format="yyyy-MM-dd HH:mm:ss"
+    :btnOption="btnOption"  
+    @change="onChange">
+    </tbl-daterange-picker>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
   name: 'App',
   data(){
     return {
+      defaultValue:[this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),this.$moment(new Date()).format('YYYY-MM-DD HH:mm:ss')],
       btnOption: {
         isYesterday:true, // 显示 昨日 按钮
         isToday:true, // 今日
@@ -25,7 +26,7 @@ export default {
         isPreMonth:true, // 上月
         isThisMonth:true, // 本月
         isLast7days:true, // 过去7天
-      }
+      },
     }
   },
   components:{
@@ -34,6 +35,7 @@ export default {
   methods:{
     onChange(val){
       console.log(val,'获取到绑定的时间范围值');
+      this.defaultValue = val;
     },
   },
 }
