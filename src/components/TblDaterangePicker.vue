@@ -59,17 +59,23 @@ export default {
         }
       }
     },
+    PickerOptions:{
+      type: [Array,String,Object],
+      default:()=>{
+        return {
+          shortcuts: [],
+          disabledDate(date) {
+            return date.getTime() > Date.now();
+          }
+        }
+      },
+    },
   },
 
   data(){
     return {
       currentValue:this.value,
-      pickerOptions: {
-        shortcuts: [],
-        disabledDate(date) {
-          return date.getTime() > Date.now();
-        }
-      },
+      pickerOptions:this.PickerOptions,
       yesterdayBtn:{
         text: '昨天',
         onClick(picker) {
@@ -219,7 +225,10 @@ export default {
 
   methods:{
     changeValue(val){
-      this.$emit('change',val)
+      if(!val){
+        val = [];
+      };
+      this.$emit('change',val);
     },
   },
 }

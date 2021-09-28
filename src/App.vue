@@ -2,11 +2,12 @@
   <div id="app" style="margin-left:500px">
     <p>时间范围选择：</p>
     <tbl-daterange-picker v-model="defaultValue"
-    type="monthrange"
+    type="datetimerange"
     align="left"
     format="yyyy-MM-dd HH:mm:ss" 
     value-format="yyyy-MM-dd HH:mm:ss"
-    :btnOption="btnOption"  
+    :btnOption="btnOption"
+    :picker-options="pickerOptions" 
     @change="onChange">
     </tbl-daterange-picker>
   </div>
@@ -26,6 +27,12 @@ export default {
         isPreMonth:true, // 上月
         isThisMonth:true, // 本月
         isLast7days:true, // 过去7天
+      },
+      pickerOptions:{
+        shortcuts: [],
+        disabledDate(date) {
+          return date.getTime() > Date.now();
+        }
       },
     }
   },
