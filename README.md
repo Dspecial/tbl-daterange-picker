@@ -3,7 +3,7 @@
  * @Email: dingxixi@techbloom.net
  * @Date: 2021-08-24 16:41:09
  * @LastEditors: dxx
- * @LastEditTime: 2021-09-27 16:59:13
+ * @LastEditTime: 2021-11-06 13:58:42
 -->
 # tbl-daterange-picker
 基于`element-ui`，改造DateTimePicker组件,范围选择
@@ -39,17 +39,21 @@ Vue.use(TblDaterangePicker);
   :value-format="ValueFormat" 
   :btnOption="btnOption"
   :picker-options="pickerOptions"
+  :clearable="clearable"
   @change="onChange">
 </tbl-daterange-picker>
+
+<el-button type="primary" @click="clear">清空</el-button>
 
 export default {
   data(){
     return {
       defaultValue:['2021-09-14','2021-09-19'], // 默认值
-      type:"datetimerange", // 默认是datetimerange, 可填：daterange|monthrange|datetimerange
-      align:"left", // 默认是left, 可填： left|cente|right
-      format:"yyyy-MM-dd", // 显示在输入框中的格式  默认：yyyy-MM-dd HH:mm:ss|yyyy-MM-dd   ...
-      ValueFormat:"yyyy-MM-dd", // 可选，绑定值的格式 默认：yyyy-MM-dd HH:mm:ss|yyyy-MM-dd ...
+      type:"datetimerange", // 日期类型，默认：datetimerange，可填：daterange|monthrange|datetimerange
+      align:"left", // 对齐方式，默认：left, 可填：left|cente|right
+      format:"yyyy-MM-dd", // 显示在输入框中的格式，默认：yyyy-MM-dd HH:mm:ss，可填：yyyy-MM-dd HH:mm:ss|yyyy-MM-dd   ...
+      ValueFormat:"yyyy-MM-dd", // 绑定值的格式，默认：yyyy-MM-dd HH:mm:ss，可填：yyyy-MM-dd HH:mm:ss|yyyy-MM-dd ...
+      clearable:true, // 是否显示清除按钮，默认：true，可填 true|false,
       btnOption: {
         isYesterday:true, // 显示 昨日 按钮
         isToday:true, // 今日
@@ -73,6 +77,11 @@ export default {
     onChange(val){
       console.log(val,'获取到绑定的时间范围值');
       this.defaultValue = val;
+    },
+
+    // 清空所选日期
+    clear(){
+      this.defaultValue = [];
     },
   },
 }

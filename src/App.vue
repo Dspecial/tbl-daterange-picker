@@ -7,9 +7,11 @@
     format="yyyy-MM-dd HH:mm:ss" 
     value-format="yyyy-MM-dd HH:mm:ss"
     :btnOption="btnOption"
-    :picker-options="pickerOptions" 
+    :picker-options="pickerOptions"
+    clearable
     @change="onChange">
     </tbl-daterange-picker>
+    <el-button type="primary" @click="clear">清空</el-button>
   </div>
 </template>
 
@@ -43,6 +45,10 @@ export default {
     onChange(val){
       console.log(val,'获取到绑定的时间范围值');
       this.defaultValue = val;
+    },
+    // 清空
+    clear(){
+      this.defaultValue = [];
     },
   },
 }

@@ -9,7 +9,7 @@
     range-separator="至"
     start-placeholder="开始日期"
     end-placeholder="结束日期"
-    clearable
+    :clearable="clearable"
     @change="changeValue">
   </el-date-picker>
 </template>
@@ -42,6 +42,10 @@ export default {
     type:{
       type: String,
       default: "datetimerange", // daterange|monthrange|datetimerange
+    },
+    clearable:{
+      type: Boolean,
+      default: false,
     },
     btnOption:{
       type: [Object,Boolean],
@@ -219,8 +223,13 @@ export default {
     }
 
   },
-  computed: {
-
+  watch: {
+    value:{
+      handler(newVal,oldVal){
+        this.currentValue = newVal;
+      },
+      deep:true,
+    },
   },
 
   methods:{
