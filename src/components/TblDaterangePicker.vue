@@ -4,83 +4,96 @@
     :type="type"
     :picker-options="pickerOptions"
     :align="align"
-    :format="format" 
+    :format="format"
     :value-format="ValueFormat"
     range-separator="至"
     start-placeholder="开始日期"
     end-placeholder="结束日期"
     :clearable="clearable"
-    @change="changeValue">
-  </el-date-picker>
+    :disabled="disabled"
+    :readonly="readonly"
+    :placeholder="placeholder"
+    @change="changeValue"
+  ></el-date-picker>
 </template>
 
 <script>
 export default {
-  name:"TblDaterangePicker",
-  components:{
-
-  },
-  props:{
-    value:{
-      type: [Array,String],
-      default:()=>{
-        return []
+  name: 'TblDaterangePicker',
+  components: {},
+  props: {
+    value: {
+      type: [Array, String],
+      default: () => {
+        return [];
       },
     },
-    align:{
+    align: {
       type: String,
-      default: "left",
+      default: 'left',
     },
-    format:{
+    format: {
       type: String,
-      default: "yyyy-MM-dd HH:mm:ss",
+      default: 'yyyy-MM-dd HH:mm:ss',
     },
-    ValueFormat:{
+    ValueFormat: {
       type: String,
-      default: "yyyy-MM-dd HH:mm:ss",
+      default: 'yyyy-MM-dd HH:mm:ss',
     },
-    type:{
+    type: {
       type: String,
-      default: "datetimerange", // daterange|monthrange|datetimerange
+      default: 'datetimerange', // daterange|monthrange|datetimerange
     },
-    clearable:{
+    clearable: {
       type: Boolean,
       default: false,
     },
-    btnOption:{
-      type: [Object,Boolean],
-      default:function(){
-        return {
-          isYesterday:true,
-          isToday:true,
-          isPreWeek:true,
-          isThisWeek:true,
-          isPreMonth:true,
-          isThisMonth:true,
-          isLast7days:true,
-          isLast30days:true,
-          isLast90days:true,
-        }
-      }
+    disabled: {
+      type: Boolean,
+      default: false,
     },
-    PickerOptions:{
-      type: [Array,String,Object],
-      default:()=>{
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: 'datetimerange', // daterange|monthrange|datetimerange
+    },
+    btnOption: {
+      type: [Object, Boolean],
+      default: function() {
+        return {
+          isYesterday: true,
+          isToday: true,
+          isPreWeek: true,
+          isThisWeek: true,
+          isPreMonth: true,
+          isThisMonth: true,
+          isLast7days: true,
+          isLast30days: true,
+          isLast90days: true,
+        };
+      },
+    },
+    PickerOptions: {
+      type: [Array, String, Object],
+      default: () => {
         return {
           shortcuts: [],
           disabledDate(date) {
             return date.getTime() > Date.now();
-          }
-        }
+          },
+        };
       },
     },
   },
 
-  data(){
+  data() {
     return {
-      currentValue:this.value,
-      pickerOptions:this.PickerOptions,
-      yesterdayBtn:{
+      currentValue: this.value,
+      pickerOptions: this.PickerOptions,
+      yesterdayBtn: {
         text: '昨天',
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
@@ -88,17 +101,17 @@ export default {
           start.setTime(start.getTime() - 3600 * 1000 * 24 * 1);
           end.setTime(end.getTime() - 3600 * 1000 * 24 * 1);
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      todayBtn:{
+      todayBtn: {
         text: '今日',
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      preWeekBtn:{
+      preWeekBtn: {
         text: '上周',
         onClick(picker) {
           const o_sDate = new Date(new Date(new Date().toLocaleDateString()).getTime());
@@ -118,9 +131,9 @@ export default {
             end.setTime(o_eDate.getTime() + 3600 * 1000 * 24 * (6 - day));
           }
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      thisWeekBtn:{
+      thisWeekBtn: {
         text: '本周',
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
@@ -131,9 +144,9 @@ export default {
             start.setDate(thisDate - thisDay + 1);
           }
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      preMonthBtn:{
+      preMonthBtn: {
         text: '上月',
         onClick(picker) {
           const oDate = new Date();
@@ -141,7 +154,7 @@ export default {
           var month = oDate.getMonth();
           var start, end;
           if (month == 0) {
-            year--
+            year--;
             start = new Date(new Date(new Date(year, 11, 1).toLocaleDateString()).getTime());
             end = new Date(new Date(new Date(year, 11, 31).toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1);
           } else {
@@ -149,99 +162,93 @@ export default {
             end = new Date(new Date(new Date(year, month, 0).toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1);
           }
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      thisMonthBtn:{
+      thisMonthBtn: {
         text: '本月',
         onClick(picker) {
           const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
           const end = new Date();
           start.setDate(1);
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      last7daysBtn:{
+      last7daysBtn: {
         text: '过去7天',
         onClick(picker) {
           const end = new Date();
           const start = new Date();
           start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      last30daysBtn:{
+      last30daysBtn: {
         text: '过去30天',
         onClick(picker) {
           const end = new Date();
           const start = new Date();
           start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-      last90daysBtn:{
+      last90daysBtn: {
         text: '过去90天',
         onClick(picker) {
           const end = new Date();
           const start = new Date();
           start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
           picker.$emit('pick', [start, end]);
-        }
+        },
       },
-
-    }
+    };
   },
-  created(){
-
-  },
-  mounted(){
-    if(this.btnOption.isYesterday){
+  created() {},
+  mounted() {
+    if (this.btnOption.isYesterday) {
       this.pickerOptions.shortcuts.push(this.yesterdayBtn);
     }
-    if(this.btnOption.isToday){
+    if (this.btnOption.isToday) {
       this.pickerOptions.shortcuts.push(this.todayBtn);
     }
-    if(this.btnOption.isPreWeek){
+    if (this.btnOption.isPreWeek) {
       this.pickerOptions.shortcuts.push(this.preWeekBtn);
     }
-    if(this.btnOption.isThisWeek){
+    if (this.btnOption.isThisWeek) {
       this.pickerOptions.shortcuts.push(this.thisWeekBtn);
     }
-    if(this.btnOption.isPreMonth){
+    if (this.btnOption.isPreMonth) {
       this.pickerOptions.shortcuts.push(this.preMonthBtn);
     }
-    if(this.btnOption.isThisMonth){
+    if (this.btnOption.isThisMonth) {
       this.pickerOptions.shortcuts.push(this.thisMonthBtn);
     }
-    if(this.btnOption.isLast7days){
+    if (this.btnOption.isLast7days) {
       this.pickerOptions.shortcuts.push(this.last7daysBtn);
     }
-    if(this.btnOption.isLast30days){
+    if (this.btnOption.isLast30days) {
       this.pickerOptions.shortcuts.push(this.last30daysBtn);
     }
-    if(this.btnOption.isLast90days){
+    if (this.btnOption.isLast90days) {
       this.pickerOptions.shortcuts.push(this.last90daysBtn);
     }
-
   },
   watch: {
-    value:{
-      handler(newVal,oldVal){
+    value: {
+      handler(newVal, oldVal) {
         this.currentValue = newVal;
       },
-      deep:true,
+      deep: true,
     },
   },
 
-  methods:{
-    changeValue(val){
-      if(!val){
+  methods: {
+    changeValue(val) {
+      if (!val) {
         val = [];
-      };
-      this.$emit('change',val);
+      }
+      this.$emit('change', val);
     },
   },
-}
+};
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
