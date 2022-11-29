@@ -3,11 +3,13 @@
  * @Email: dingxixi@techbloom.net
  * @Date: 2021-08-24 16:41:09
  * @LastEditors: dxx
- * @LastEditTime: 2021-11-06 13:58:42
+ * @LastEditTime: 2022-11-29 17:50:17
 -->
+
 # tbl-daterange-picker
-基于`element-ui`，改造DateTimePicker组件,范围选择
-添加了昨日、今日、上周、本周、上月、本月、过去7天、过去30天、过去90天等快捷按钮
+
+基于`element-ui`，改造 DateTimePicker 组件,范围选择
+添加了昨日、今日、上周、本周、上月、本月、过去 7 天、过去 30 天、过去 90 天等快捷按钮
 希望大家喜欢！
 
 [项目地址](https://github.com/Dspecial/tbl-daterange-picker.git)
@@ -32,16 +34,19 @@ Vue.use(TblDaterangePicker);
 #### 使用
 
 ```
-<tbl-daterange-picker v-model="defaultValue" 
-  :type="type"
-  :align="align"
-  :format="format" 
-  :value-format="ValueFormat" 
+<tbl-daterange-picker
+  v-model="defaultValue"
+  type="datetimerange"
+  align="left"
+  format="yyyy-MM-dd HH:mm:ss"
+  value-format="yyyy-MM-dd HH:mm:ss"
   :btnOption="btnOption"
   :picker-options="pickerOptions"
-  :clearable="clearable"
-  @change="onChange">
-</tbl-daterange-picker>
+  range-separator="至"
+  start-placeholder="开始日期"
+  end-placeholder="结束日期"
+  @change="onChange"
+></tbl-daterange-picker>
 
 <el-button type="primary" @click="clear">清空</el-button>
 
@@ -85,16 +90,15 @@ export default {
     },
   },
 }
-	
+
 ```
 
 #### 问题解决
 
-1.btnOption不配置的话默认所有按钮都显示。 
+1.btnOption 不配置的话默认所有按钮都显示。
 
-2.如使用picker-options来限制日期选择范围，或者设置周起始日firstDayOfWeek，或者设置日期的类名cellClassName时，当需要显示快捷按钮，则必须加上shortcuts: []，否则无快捷按钮；  
+2.如使用 picker-options 来限制日期选择范围，或者设置周起始日 firstDayOfWeek，或者设置日期的类名 cellClassName 时，当需要显示快捷按钮，则必须加上 shortcuts: []，否则无快捷按钮；
 
-不配置picker-options时，默认是有快捷按钮的。 
- 
+不配置 picker-options 时，默认是有快捷按钮的。
+
 3.picker-options 所有属性和参数 详见 [参考地址](https://element.eleme.cn/#/zh-CN/component/datetime-picker#picker-options)
-

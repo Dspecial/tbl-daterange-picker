@@ -1,20 +1,10 @@
 <template>
-  <el-date-picker
-    v-model="currentValue"
-    :type="type"
-    :picker-options="pickerOptions"
-    :align="align"
-    :format="format"
-    :value-format="ValueFormat"
-    range-separator="至"
-    start-placeholder="开始日期"
-    end-placeholder="结束日期"
-    :clearable="clearable"
-    :disabled="disabled"
-    :readonly="readonly"
-    :placeholder="placeholder"
-    @change="changeValue"
-  ></el-date-picker>
+  <!-- 继承el-date-picker的所有属性和方法 -->
+  <el-date-picker v-model="currentValue" :picker-options="pickerOptions" v-bind="$attrs" v-on="$listeners">
+    <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots">
+      <slot :name="slotName" v-bind="slotProps" />
+    </template>
+  </el-date-picker>
 </template>
 
 <script>
@@ -27,38 +17,6 @@ export default {
       default: () => {
         return [];
       },
-    },
-    align: {
-      type: String,
-      default: 'left',
-    },
-    format: {
-      type: String,
-      default: 'yyyy-MM-dd HH:mm:ss',
-    },
-    ValueFormat: {
-      type: String,
-      default: 'yyyy-MM-dd HH:mm:ss',
-    },
-    type: {
-      type: String,
-      default: 'datetimerange', // daterange|monthrange|datetimerange
-    },
-    clearable: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readonly: {
-      type: Boolean,
-      default: false,
-    },
-    placeholder: {
-      type: String,
-      default: 'datetimerange', // daterange|monthrange|datetimerange
     },
     btnOption: {
       type: [Object, Boolean],
@@ -241,14 +199,7 @@ export default {
     },
   },
 
-  methods: {
-    changeValue(val) {
-      if (!val) {
-        val = [];
-      }
-      this.$emit('change', val);
-    },
-  },
+  methods: {},
 };
 </script>
 <style scoped></style>

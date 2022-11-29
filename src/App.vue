@@ -9,9 +9,9 @@
       value-format="yyyy-MM-dd HH:mm:ss"
       :btnOption="btnOption"
       :picker-options="pickerOptions"
-      clearable
-      readonly
-      disabled
+      range-separator="至"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期"
       @change="onChange"
     ></tbl-daterange-picker>
     <el-button type="primary" @click="clear">清空</el-button>
