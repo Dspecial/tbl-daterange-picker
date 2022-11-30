@@ -3,7 +3,7 @@
  * @Email: dingxixi@techbloom.net
  * @Date: 2021-08-24 16:41:09
  * @LastEditors: dxx
- * @LastEditTime: 2022-11-29 17:50:17
+ * @LastEditTime: 2022-11-30 14:45:07
 -->
 
 # tbl-daterange-picker
@@ -17,17 +17,18 @@
 #### 安装
 
 ```
-npm i element-ui -S; // 先安装element-ui
 npm i tbl-daterange-picker;
 ```
 
 #### 全局注册
 
-`main.js`中注册
+`main.js`中注册，依赖于 element-ui，因此注册的时候得同步注册 element-ui
 
 ```
+import ElementUI from 'element-ui';
 import TblDaterangePicker from 'tbl-daterange-picker';
 
+Vue.use(ElementUI, { size: 'small', zIndex: 3000 }); // 声明使用ElementUI
 Vue.use(TblDaterangePicker);
 ```
 

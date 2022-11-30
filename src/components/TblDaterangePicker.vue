@@ -1,6 +1,15 @@
 <template>
   <!-- 继承el-date-picker的所有属性和方法 -->
-  <el-date-picker v-model="currentValue" :picker-options="pickerOptions" v-bind="$attrs" v-on="$listeners">
+  <el-date-picker
+    v-model="currentValue"
+    :picker-options="pickerOptions"
+    v-bind="$attrs"
+    v-on="$listeners"
+    :type="type"
+    :range-separator="rangeSeparator"
+    :start-placeholder="startPlaceholder"
+    :end-placeholder="endPlaceholder"
+  >
     <template #[slotName]="slotProps" v-for="(slot, slotName) in $slots">
       <slot :name="slotName" v-bind="slotProps" />
     </template>
@@ -17,6 +26,22 @@ export default {
       default: () => {
         return [];
       },
+    },
+    type: {
+      type: String,
+      default: 'datetimerange', // daterange|mouthrange|datetimerange
+    },
+    rangeSeparator: {
+      type: String,
+      default: '至',
+    },
+    startPlaceholder: {
+      type: String,
+      default: '开始日期',
+    },
+    endPlaceholder: {
+      type: String,
+      default: '结束日期',
     },
     btnOption: {
       type: [Object, Boolean],
